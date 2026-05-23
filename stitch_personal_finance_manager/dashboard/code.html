@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinanceFlow - Dark Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#ffdad6",
+            "tertiary": "#98da27",
+            "on-surface-variant": "#c9c4d8",
+            "secondary-fixed": "#c4e7ff",
+            "surface-variant": "#353534",
+            "on-secondary": "#00354a",
+            "on-primary-fixed": "#1c0062",
+            "primary": "#cabeff",
+            "tertiary-fixed-dim": "#98da27",
+            "on-surface": "#e5e2e1",
+            "secondary-fixed-dim": "#7bd0ff",
+            "surface-container-high": "#2a2a2a",
+            "surface-tint": "#cabeff",
+            "outline": "#938ea1",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary-fixed-variant": "#4816cb",
+            "tertiary-fixed": "#b2f746",
+            "surface-dim": "#131313",
+            "on-tertiary-fixed-variant": "#334f00",
+            "tertiary-container": "#6ba000",
+            "error": "#ffb4ab",
+            "on-primary": "#31009a",
+            "primary-container": "#947dff",
+            "outline-variant": "#484555",
+            "surface": "#131313",
+            "on-tertiary-container": "#1c2f00",
+            "secondary": "#7bd0ff",
+            "surface-container": "#201f1f",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-container": "#00374d",
+            "on-tertiary": "#213600",
+            "primary-fixed-dim": "#cabeff",
+            "on-primary-container": "#2a0088",
+            "surface-container-highest": "#353534",
+            "on-error": "#690005",
+            "primary-fixed": "#e6deff",
+            "on-tertiary-fixed": "#121f00",
+            "inverse-primary": "#603ce2",
+            "secondary-container": "#00a6e0",
+            "inverse-on-surface": "#313030",
+            "on-secondary-fixed-variant": "#004c69",
+            "error-container": "#93000a",
+            "surface-bright": "#3a3939",
+            "surface-container-low": "#1c1b1b",
+            "on-background": "#e5e2e1",
+            "background": "#131313",
+            "on-secondary-fixed": "#001e2c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "md": "24px",
+            "xs": "4px",
+            "sm": "12px",
+            "lg": "40px",
+            "gutter": "16px",
+            "xl": "64px",
+            "base": "8px",
+            "container-margin": "20px"
+          },
+          "fontFamily": {
+            "body-lg": ["Manrope"],
+            "headline-lg-mobile": ["Manrope"],
+            "body-md": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "label-md": ["Manrope"],
+            "display-lg": ["Manrope"],
+            "headline-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #000000;
+      color: #e5e2e1;
+      font-family: 'Manrope', sans-serif;
+    }
+    .glass-card {
+      background: #121212;
+      border: 1px solid #262626;
+      backdrop-filter: blur(20px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+    .chart-segment {
+      stroke-linecap: round;
+      transition: all 0.3s ease;
+    }
+    .neon-glow-primary {
+      filter: drop-shadow(0 0 8px rgba(202, 190, 255, 0.4));
+    }
+    .neon-glow-secondary {
+      filter: drop-shadow(0 0 8px rgba(123, 208, 255, 0.4));
+    }
+    .neon-glow-tertiary {
+      filter: drop-shadow(0 0 8px rgba(152, 218, 39, 0.4));
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col pb-xl">
+<!-- Top AppBar -->
+<header class="bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 sticky top-0 z-50 flex justify-between items-center px-container-margin py-base w-full">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center bg-surface-container-high overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYJHDvRluQXYu2UqEoA4brDHxlrC7qoUxxt9RlyAyXDXmDAyjOYLFwXace5LIu6bN4lkIZCjzCIpcOV0OKRuVDw4C_V0_5Q3EImmp3K8M4ifhCSqjKD_MtNQwHDjWswX9t9fp0nndaEcErlDd1ToZyZwcEILC5Jewon7CABCvHvPrfGTshHVHhuL021wY26G5ipQk3iQRdDxI8EVAB2dlVSV0Gr4g6dhIdoQAoOGXWU837xJEpcg1NXxxd5rtOouCMkTEHDrz_YbFQ"/>
+</div>
+</div>
+<h1 class="font-display-lg text-headline-md text-primary tracking-tight">FinanceFlow</h1>
+<div class="flex items-center gap-xs">
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors text-on-surface-variant scale-95 active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto w-full px-container-margin mt-md flex flex-col gap-lg">
+<!-- Hero Balance Section -->
+<section class="flex flex-col items-center py-md space-y-sm">
+<p class="font-label-md text-label-md text-outline uppercase tracking-widest">Total Balance</p>
+<div class="flex flex-col items-center">
+<h2 class="font-display-lg text-[48px] md:text-[64px] leading-tight text-on-surface tracking-tighter">$42,680.50</h2>
+<div class="flex items-center gap-xs text-tertiary mt-xs">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="font-label-md text-label-md">+2.4% from last month</span>
+</div>
+</div>
+<div class="flex gap-md mt-md w-full max-w-md">
+<button class="flex-1 h-12 bg-on-surface text-background font-label-md rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span> Deposit
+        </button>
+<button class="flex-1 h-12 glass-card font-label-md text-on-surface rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-transform">
+<span class="material-symbols-outlined">payments</span> Transfer
+        </button>
+</div>
+</section>
+<!-- Analytics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Donut Chart Card -->
+<section class="md:col-span-7 glass-card p-md rounded-3xl flex flex-col items-center relative overflow-hidden">
+<div class="flex justify-between w-full mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Statistics</h3>
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-4 py-1 rounded-md text-label-md font-label-md text-on-surface-variant">Week</button>
+<button class="px-4 py-1 rounded-md text-label-md font-label-md bg-on-surface text-background shadow-lg">Month</button>
+</div>
+</div>
+<div class="relative w-64 h-64 my-base flex items-center justify-center">
+<!-- Circular Segmented Chart (SVG) -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#262626" stroke-width="8"></circle>
+<circle class="chart-segment neon-glow-primary" cx="50" cy="50" fill="none" r="40" stroke="#cabeff" stroke-dasharray="60 251.2" stroke-width="10"></circle>
+<circle class="chart-segment neon-glow-secondary" cx="50" cy="50" fill="none" r="40" stroke="#7bd0ff" stroke-dasharray="80 251.2" stroke-dashoffset="-65" stroke-width="10"></circle>
+<circle class="chart-segment neon-glow-tertiary" cx="50" cy="50" fill="none" r="40" stroke="#98da27" stroke-dasharray="45 251.2" stroke-dashoffset="-150" stroke-width="10"></circle>
+<circle class="chart-segment" cx="50" cy="50" fill="none" r="40" stroke="#ffb4ab" stroke-dasharray="35 251.2" stroke-dashoffset="-200" stroke-width="10"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg text-on-surface">$11.3K</span>
+<span class="font-label-md text-label-md text-outline">Spent Aug</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-x-xl gap-y-sm w-full mt-md">
+<div class="flex items-center justify-between border-l-4 border-primary pl-base">
+<span class="font-label-md text-outline">Shopping</span>
+<span class="font-body-md text-on-surface">$4,815</span>
+</div>
+<div class="flex items-center justify-between border-l-4 border-secondary pl-base">
+<span class="font-label-md text-outline">Food</span>
+<span class="font-body-md text-on-surface">$3,254</span>
+</div>
+<div class="flex items-center justify-between border-l-4 border-tertiary pl-base">
+<span class="font-label-md text-outline">Health</span>
+<span class="font-body-md text-on-surface">$1,362</span>
+</div>
+<div class="flex items-center justify-between border-l-4 border-error pl-base">
+<span class="font-label-md text-outline">Other</span>
+<span class="font-body-md text-on-surface">$1,141</span>
+</div>
+</div>
+</section>
+<!-- Category Summary Cards -->
+<div class="md:col-span-5 grid grid-cols-2 gap-gutter">
+<div class="glass-card p-md rounded-3xl flex flex-col gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-xs">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<span class="font-label-md text-outline">Food</span>
+<span class="font-headline-md text-on-surface">$892.40</span>
+<div class="w-full h-1 bg-surface-container rounded-full mt-base">
+<div class="h-full bg-primary rounded-full w-[65%]"></div>
+</div>
+</div>
+<div class="glass-card p-md rounded-3xl flex flex-col gap-xs">
+<div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-xs">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<span class="font-label-md text-outline">Transport</span>
+<span class="font-headline-md text-on-surface">$1,250.00</span>
+<div class="w-full h-1 bg-surface-container rounded-full mt-base">
+<div class="h-full bg-secondary rounded-full w-[40%]"></div>
+</div>
+</div>
+<div class="glass-card p-md rounded-3xl flex flex-col gap-xs">
+<div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center text-tertiary mb-xs">
+<span class="material-symbols-outlined">local_mall</span>
+</div>
+<span class="font-label-md text-outline">Shopping</span>
+<span class="font-headline-md text-on-surface">$2,410.15</span>
+<div class="w-full h-1 bg-surface-container rounded-full mt-base">
+<div class="h-full bg-tertiary rounded-full w-[82%]"></div>
+</div>
+</div>
+<div class="glass-card p-md rounded-3xl flex flex-col gap-xs">
+<div class="w-10 h-10 rounded-full bg-on-surface-variant/20 flex items-center justify-center text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined">more_horiz</span>
+</div>
+<span class="font-label-md text-outline">Services</span>
+<span class="font-headline-md text-on-surface">$420.00</span>
+<div class="w-full h-1 bg-surface-container rounded-full mt-base">
+<div class="h-full bg-on-surface-variant rounded-full w-[25%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Transactions -->
+<section class="w-full">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Transactions</h3>
+<button class="font-label-md text-primary flex items-center gap-xs">View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>
+</div>
+<div class="glass-card rounded-3xl overflow-hidden divide-y divide-outline-variant/20">
+<!-- Transaction Item -->
+<div class="p-md flex items-center justify-between hover:bg-surface-variant/20 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-on-surface">Apple Store</span>
+<span class="font-label-md text-outline">MacBook Pro M3 Max Upgrade</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-body-lg text-on-surface">-$3,499.00</span>
+<span class="font-label-md text-outline">Today, 2:45 PM</span>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="p-md flex items-center justify-between hover:bg-surface-variant/20 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">coffee</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-on-surface">Starbucks</span>
+<span class="font-label-md text-outline">Iced Caramel Macchiato</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-body-lg text-on-surface">-$6.45</span>
+<span class="font-label-md text-outline">Today, 10:15 AM</span>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="p-md flex items-center justify-between hover:bg-surface-variant/20 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">work</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-on-surface">Stripe Payout</span>
+<span class="font-label-md text-outline">Freelance UI Project</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-body-lg text-tertiary">+$8,240.00</span>
+<span class="font-label-md text-outline">Yesterday</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Marketing Card (Glassmorphism + Neon) -->
+<section class="relative h-[200px] rounded-[32px] overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="An abstract high-tech visual featuring dark geometric structures and neon blue data streams flowing through a digital space. The lighting is moody and low-key, emphasizing the sharp contrast between the deep black background and the vibrant electrical accents. This creates a sophisticated, premium finance-technology aesthetic with a sense of immense depth and forward motion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn_vM5cRxERjos9XwGDdOsxKjNNkGSOZegOAub6biqS6_2EsQzyeaeYi8_EJmQ7WXgu-8doxO1h-eMELKFPoEOwryPamSQ-cGepeh-jcnnEb4AEuTA9GZ17ki5Q30lr3Or_PumuPqFNyOzIe9a-iJ4zmdqlMwPoVm6TGRn5zaSiABAZ0FsVYNWne7PyvsDVkrcCTfBcPxYNg5kI3lrCgktRoJCBOWbrlfHRsEysX5K3J2hXSDy_E-_HdiMo2JOX6UT49Xqdhlyj3_a"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent p-xl flex flex-col justify-center">
+<span class="font-label-md text-primary mb-xs">PREMIUM FEATURE</span>
+<h4 class="font-headline-lg text-on-surface max-w-sm mb-base">AI-Powered Wealth Projections</h4>
+<p class="font-body-md text-outline max-w-xs mb-md">Forecast your financial future with 98% accuracy using our latest ML models.</p>
+<button class="w-fit px-6 h-10 rounded-full bg-primary text-background font-label-md">Learn More</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<div class="flex justify-around items-center h-xl px-md">
+<a class="flex flex-col items-center justify-center text-primary-fixed-dim bg-primary-container/20 rounded-xl p-2 scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined" data-weight="fill">grid_view</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">ads_click</span>
+</a>
+</div>
+</nav>
+</body></html>
